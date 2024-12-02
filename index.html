@@ -15,7 +15,7 @@
 </head>
 <body style="margin: 0; overflow: hidden;">
     <!-- AR Scene -->
-    <a-scene embedded arjs>
+    <a-scene embedded arjs='sourceType: webcam;'>
         <!-- Define the Marker for AR -->
         <a-marker preset="hiro">
             <!-- Adding the video element -->
@@ -26,11 +26,17 @@
     </a-scene>
     <!-- Debugging Script -->
     <script>
-        document.querySelector('a-marker').addEventListener('markerFound', () => {
+        const marker = document.querySelector('a-marker');
+        marker.addEventListener('markerFound', () => {
             console.log('Marker found');
         });
-        document.querySelector('a-marker').addEventListener('markerLost', () => {
+        marker.addEventListener('markerLost', () => {
             console.log('Marker lost');
+        });
+        marker.addEventListener('markerFound', () => {
+            const videoEl = document.querySelector('a-video');
+            const video = videoEl.getObject3D('mesh').material.map.image;
+            video.play();
         });
     </script>
 </body>
