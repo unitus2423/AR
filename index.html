@@ -18,12 +18,20 @@
     <a-scene embedded arjs>
         <!-- Define the Marker for AR -->
         <a-marker preset="hiro">
-            <!-- 3D content goes here -->
             <!-- Adding the video element -->
             <a-video src="https://www.w3schools.com/html/mov_bbb.mp4" width="4" height="2" position="0 0.5 0" rotation="-90 0 0"></a-video>
         </a-marker>
         <!-- Define the Camera -->
         <a-entity camera></a-entity>
     </a-scene>
+    <!-- Debugging Script -->
+    <script>
+        document.querySelector('a-marker').addEventListener('markerFound', () => {
+            console.log('Marker found');
+        });
+        document.querySelector('a-marker').addEventListener('markerLost', () => {
+            console.log('Marker lost');
+        });
+    </script>
 </body>
 </html>
